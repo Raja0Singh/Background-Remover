@@ -1,0 +1,31 @@
+services:
+  # Web Service (FastAPI Backend)
+  - type: web
+    name: background-remover-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+        generateValue: true
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 30
+        sync: false
+      - key: DEBUG
+        value: false
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.0
+        sync: false
+
+# PostgreSQL Database (if not using Neon)
+# databases:
+#   - name: background-remover-db
+#     databaseName: background_remover
+#     user: background_user
+#     plan: free
