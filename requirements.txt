@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+python-multipart
+rembg[cpu]
+pillow
+python-jose[cryptography]
+passlib[bcrypt]
+email-validator
+prisma
+psycopg2-binary
+python-dotenv
+sqlalchemy

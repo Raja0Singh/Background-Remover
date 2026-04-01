@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Background Removal</title>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Section -->
+        <header>
+            <div class="logo-container">
+                <span class="sparkle-icon">✨</span>
+                <h1>Magic Background Remover</h1>
+            </div>
+            <p>Instantly remove backgrounds from your images using AI, completely free.</p>
+        </header>
+
+        <!-- Main Content Section -->
+        <main>
+            <!-- Step 1: Upload Area -->
+            <section id="upload-section" class="upload-area">
+                <input type="file" id="file-input" accept="image/png, image/jpeg, image/webp" hidden>
+                <div class="drag-drop-box" id="drop-zone">
+                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <h3>Drag & Drop an image here</h3>
+                    <p>or</p>
+                    <button class="btn primary-btn" id="browse-btn">Browse Files</button>
+                    <span class="file-info">Supports JPG, PNG, WEBP up to 5MB</span>
+                </div>
+            </section>
+
+            <!-- Step 2: Processing State -->
+            <section id="processing-section" class="processing-area hidden">
+                <div class="loader-container">
+                    <div class="spinner"></div>
+                    <h3 id="loading-text">Analyzing image & removing background...</h3>
+                    <p>This usually takes a few seconds.</p>
+                </div>
+            </section>
+
+            <!-- Step 3: Result Area -->
+            <section id="result-section" class="result-area hidden">
+                <div class="comparison-container">
+                    <!-- Original Image Preview -->
+                    <div class="image-box original-box">
+                        <span class="badge">Original</span>
+                        <img id="original-image" src="" alt="Original Uploaded Image">
+                    </div>
+
+                    <!-- Processed Image Preview -->
+                    <div class="image-box result-box">
+                        <span class="badge success">Background Removed</span>
+                        <!-- Transparent checkerboard background added via CSS -->
+                        <div class="transparent-bg">
+                            <img id="processed-image" src="" alt="Processed Image without Background">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn outline-btn" id="reset-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                        Upload Another
+                    </button>
+                    <button class="btn primary-btn" id="download-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download Image
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Error Notification -->
+            <div id="error-toast" class="toast hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <span id="error-message">An error occurred. Please try again.</span>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Built with FastApi & Rembg</p>
+        </footer>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
