@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Remover - AI Powered</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+    </div>
+    
+    <div class="container">
+        <div class="login-card">
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h1>Background Remover</h1>
+                <p class="tagline">AI-Powered Background Removal</p>
+            </div>
+            
+            <div class="form-container">
+                <!-- Login Form -->
+                <div id="loginSection" class="auth-section">
+                    <h2>Welcome Back</h2>
+                    <p class="form-subtitle">Sign in to continue</p>
+                    
+                    <form id="loginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="loginUsername">
+                                <i class="fas fa-user"></i>
+                                Username
+                            </label>
+                            <input type="text" id="loginUsername" name="username" required placeholder="Enter your username">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">
+                                <i class="fas fa-lock"></i>
+                                Password
+                            </label>
+                            <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span>Sign In</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+
+                    <div class="toggle-form">
+                        <p>Don't have an account? <a href="#" id="showRegister">Sign up</a></p>
+                    </div>
+                </div>
+
+                <!-- Register Form (Initially Hidden) -->
+                <div id="registerSection" class="auth-section" style="display: none;">
+                    <h2>Create Account</h2>
+                    <p class="form-subtitle">Join us today</p>
+                    
+                    <form id="registerForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="registerUsername">
+                                <i class="fas fa-user"></i>
+                                Username
+                            </label>
+                            <input type="text" id="registerUsername" name="username" required placeholder="Choose a username">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">
+                                <i class="fas fa-envelope"></i>
+                                Email
+                            </label>
+                            <input type="email" id="registerEmail" name="email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">
+                                <i class="fas fa-lock"></i>
+                                Password
+                            </label>
+                            <input type="password" id="registerPassword" name="password" required placeholder="Create a password">
+                        </div>
+                        <button type="submit" class="btn btn-secondary">
+                            <span>Create Account</span>
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                    </form>
+
+                    <div class="toggle-form">
+                        <p>Already have an account? <a href="#" id="showLogin">Sign in</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error/Success Messages -->
+            <div id="message" class="message">
+                <i class="fas fa-check-circle"></i>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Background Removal Tool (Initially Hidden) -->
+        <div id="bgRemovalTool" class="bg-removal-tool" style="display: none;">
+            <div class="tool-header">
+                <div class="logo">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <h2>Background Removal Studio</h2>
+                <p class="tool-subtitle">Transform your images instantly</p>
+            </div>
+            
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-details">
+                    <span id="userInfo"></span>
+                    <p class="user-status">Premium Member</p>
+                </div>
+                <button id="logoutBtn" class="btn btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+            
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Drop your image here</h3>
+                        <p>or click to browse</p>
+                        <input type="file" id="imageUpload" accept="image/*" required>
+                        <button type="button" class="btn btn-outline" onclick="document.getElementById('imageUpload').click()">
+                            <i class="fas fa-folder-open"></i>
+                            Choose File
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <div class="file-details">
+                        <i class="fas fa-image"></i>
+                        <span id="fileName"></span>
+                        <span id="fileSize"></span>
+                    </div>
+                    <button id="removeBgBtn" class="btn btn-primary">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                        <span>Remove Background</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-header">
+                    <h3>Processing Complete!</h3>
+                    <p>Your image has been transformed</p>
+                </div>
+                
+                <div class="image-comparison">
+                    <div class="image-preview before">
+                        <div class="image-label">
+                            <i class="fas fa-image"></i>
+                            Original
+                        </div>
+                        <div class="image-wrapper">
+                            <img id="originalImage" alt="Original">
+                            <div class="image-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="vs-divider">
+                        <i class="fas fa-arrows-left-right"></i>
+                    </div>
+                    
+                    <div class="image-preview after">
+                        <div class="image-label success">
+                            <i class="fas fa-check-circle"></i>
+                            Background Removed
+                        </div>
+                        <div class="image-wrapper">
+                            <img id="resultImage" alt="Result">
+                            <div class="image-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <button id="downloadBtn" class="btn btn-success">
+                            <i class="fas fa-download"></i>
+                            Download HD
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="processing-overlay" id="processingOverlay" style="display: none;">
+                <div class="processing-content">
+                    <div class="spinner"></div>
+                    <h3>Processing your image...</h3>
+                    <p>Our AI is removing the background</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
