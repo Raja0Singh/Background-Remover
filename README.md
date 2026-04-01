@@ -97,6 +97,62 @@ Required variables for Docker deployment:
 - `ACCESS_TOKEN_EXPIRE_MINUTES`: Token expiration time
 - `DEBUG`: Set to False for production
 
+## 🌐 Vercel Frontend Deployment
+
+### Prerequisites
+
+- Vercel account
+- Deployed backend API URL
+
+### Quick Start
+
+1. **Navigate to frontend folder**:
+
+   ```bash
+   cd frontend
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Set environment variable**:
+
+   ```bash
+   vercel env add VITE_API_BASE_URL
+   # Enter your backend URL: https://your-backend.vercel.app
+   ```
+
+4. **Deploy to Vercel**:
+   ```bash
+   vercel --prod
+   ```
+
+### Frontend Features
+
+- **Modern UI/UX**: Beautiful design with animations
+- **Responsive Design**: Works on all devices
+- **Drag & Drop**: Easy file upload
+- **Real-time Processing**: Live feedback during AI processing
+- **Authentication**: Secure user management
+- **Progress Tracking**: Visual progress indicators
+
+### Vercel Configuration
+
+- **Framework**: Vite (auto-detected)
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **Node Version**: 18.x
+
+### Custom Domain
+
+1. Go to Vercel dashboard
+2. Navigate to project settings
+3. Add custom domain
+4. Update DNS records
+
 ## 🚀 Local Development
 
 1. **Install dependencies:**
